@@ -23,12 +23,21 @@ public class Table {
   }
  }
 
- public void Put(int row, int column,int player){
+ public void put(int row, int column,int player){
   if (player == 1) {
    table[row][column] = 1;
   }
   else {
    table[row][column] = 2;
+  }
+ }
+
+ public void cout(){
+  for (int i=0;i<10;i++){
+   for (int j=0;j<10;j++){
+    System.out.print(table[i][j]);
+   }
+   System.out.println();
   }
  }
 
