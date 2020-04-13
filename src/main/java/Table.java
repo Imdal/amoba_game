@@ -2,9 +2,11 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
 public class Table {
- private int[][] table = new int[10][10];
+ private int size;
+ private int[][] table;
 
- Table(){
+ public Table(){
+  table = new int[10][10];
   for (int i = 0; i < 10; i++) {
    for (int j = 0; j < 10; j++) {
     table[i][j] = 0;
@@ -12,7 +14,8 @@ public class Table {
   }
  }
 
- Table(int size){
+ public Table(int size){
+  table=new int[size][size];
   for (int i = 0; i < size; i++) {
    for (int j = 0; j < size; j++) {
     table[i][j] = 0;
