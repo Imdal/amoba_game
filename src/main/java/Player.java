@@ -7,6 +7,7 @@ public class Player {
 
     Player(String playerName){
         this.playerName = playerName;
+
     }
     void WinGame() {
         this.games += 1;

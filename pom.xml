@@ -7,6 +7,46 @@
     <groupId>hu.unideb.inf</groupId>
     <artifactId>amoba</artifactId>
     <version>1.0</version>
+    <developers>
+        <developer>
+            <id>imdal</id>
+            <name>Imre Dalma</name>
+            <email>imdal@mailbox.unideb.hu</email>
+            <organization>Faculty of Informatics, University of Debrecen</organization>
+            <organizationUrl>https://www.inf.unideb.hu/</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <url>https://github.com/Imdal/amoba_game</url>
+        <connection>scm:git:https://github.com/Imdal/amoba_game.git</connection>
+        <developerConnection>scm:git:https://github.com/Imdal/amoba_game.git</developerConnection>
+    </scm>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>13</maven.compiler.source>
+        <maven.compiler.target>13</maven.compiler.target>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-maven-plugin</artifactId>
+                <version>1.18.12.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>delombok</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
