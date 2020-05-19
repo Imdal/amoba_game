@@ -1,9 +1,11 @@
+package game;
+
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
 public class Table {
  private int size;
- private int[][] table;
+ private final int[][] table;
 
  public Table(){
   table = new int[10][10];
