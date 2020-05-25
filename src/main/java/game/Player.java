@@ -1,13 +1,20 @@
 package game;
 
+import javax.persistence.*;
+
+@Entity
 public class Player {
-    private String playerName;
+
+    @Id
+    @Column(nullable = false)
+    private final String playerName;
     private int games;
     private int wins;
     private int winRow;
     private int bestWinRow;
 
     Player(String playerName){
+
         this.playerName = playerName;
         this.games = 0;
         this.wins = 0;
@@ -42,5 +49,9 @@ public class Player {
 
     int getWinRow(){
         return this.winRow;
+    }
+
+    public String getPlayerName() {
+        return this.playerName;
     }
 }

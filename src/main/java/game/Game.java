@@ -5,17 +5,21 @@ public class Game {
     private Player player2;
     private Table table;
 
-    Game(){
-
-    }
 
     public Game(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
+        table = new Table();
+
+    }
+
+    public Game(Player player1, Player player2, int size) {
+        this.player1 = player1;
+        this.player2 = player2;
+        table=new Table(size);
     }
 
     public void Start(){
-        table = new Table();
         table.put(0,0,1);
         table.put(0,1,2);
         table.cout();
