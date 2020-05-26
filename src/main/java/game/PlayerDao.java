@@ -1,12 +1,11 @@
 package game;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import util.jpa.GenericJpaDao;
 
-import java.util.List;
 
-public class PlayerDao extends util.jpa.GenericJpaDao<Player> {
+
+public class PlayerDao extends GenericJpaDao<Player> {
     public PlayerDao() {
         super(Player.class);
     }
@@ -14,13 +13,10 @@ public class PlayerDao extends util.jpa.GenericJpaDao<Player> {
 @Transactional
     public Player findPlayer(String name){
         if(entityManager.createQuery("Select playerName From Player p where p.playerName=name").getResultList().isEmpty()){
-            return null;
+            return new Player(name);
         }
         else return (Player) entityManager.createQuery("Select playerName From Player p where p.playerName=name").getResultList().get(0);
     }
 
-    public Player newPlayer(String name) {
-        return null;
-    }
 
 }

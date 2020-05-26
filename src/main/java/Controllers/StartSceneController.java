@@ -3,6 +3,8 @@ package Controllers;
 import Main.AmoebaApplication;
 import game.Game;
 import game.Player;
+import game.PlayerDao;
+import game.Table;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,11 +16,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import lombok.extern.slf4j.Slf4j;
+
+import javax.inject.Inject;
 
 
 import java.io.IOException;
-
+@Slf4j
 public class StartSceneController {
+    private PlayerDao playerDao;
+    private GameSceneController gameSceneController;
+
+    @Inject
     private FXMLLoader fxmlLoader;
 
     @FXML
@@ -33,6 +42,7 @@ public class StartSceneController {
 
     @FXML
     private Slider TableSizeSlider;
+
 
     @FXML
 void startAction(ActionEvent event) throws IOException {
@@ -52,9 +62,22 @@ void startAction(ActionEvent event) throws IOException {
         player2label.setTextFill(Color.web("#000000"));
         player1label.setTextFill(Color.web("#000000"));
 
-        Parent root = (Parent) fxmlLoader.load(getClass().getResource("/fxml/gameWindow.fxml"));
+        Parent root = fxmlLoader.load(getClass().getResource("/fxml/gameWindow.fxml"));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/Css/Style.css");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
         AmoebaApplication.stage.getScene().setRoot(root);
-        fxmlLoader.<GameSceneController>getController().startGame(Player1NameText.getText(), Player2NameText.getText(),(int) TableSizeSlider.getValue());
+//
+//        gameSceneController.startGame(Player1NameText.getText(), Player2NameText.getText(),(int) TableSizeSlider.getValue());
+//        fxmlLoader.<GameSceneController>getController().startGame(Player1NameText.getText(), Player2NameText.getText(),(int) TableSizeSlider.getValue());
+        log.info("Set names");
+//        fxmlLoader.<GameSceneController>getController().setPlayersName(Player1NameText.getText(), Player2NameText.getText());
+        log.info("Table init");
+        Table.tableInit();
+        log.info("Table cout");
+//        Table.cout();
     }
     }
 }

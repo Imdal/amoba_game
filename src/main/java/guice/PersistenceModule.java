@@ -1,4 +1,4 @@
-package util.guice;
+package guice;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.persist.jpa.JpaPersistModule;
@@ -14,7 +14,7 @@ public class PersistenceModule extends AbstractModule {
     @Override
     protected void configure() {
         install(new JpaPersistModule(jpaUnit));
-        bind(JpaInitializer.class).asEagerSingleton();
+        bind(util.guice.JpaInitializer.class).asEagerSingleton();
     }
 
 }

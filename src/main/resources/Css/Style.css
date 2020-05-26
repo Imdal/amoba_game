@@ -1,0 +1,8 @@
+.root {
+    -fx-background-color: aqua;
+}
+
+#gamePane {
+    -fx-background-color: lightblue;
+    -fx-grid-lines-visible: true;
+}

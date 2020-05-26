@@ -5,7 +5,6 @@ import javax.persistence.*;
 @Entity
 public class Player {
 
-    @Id
     @Column(nullable = false)
     private final String playerName;
     private int games;
@@ -13,7 +12,7 @@ public class Player {
     private int winRow;
     private int bestWinRow;
 
-    Player(String playerName){
+    public Player(String playerName){
 
         this.playerName = playerName;
         this.games = 0;
@@ -21,7 +20,7 @@ public class Player {
         this.winRow = 0;
         this.bestWinRow = 0;
     }
-    void WinGame() {
+    public void WinGame() {
         this.games += 1;
         this.wins += 1;
         this.winRow += 1;
@@ -30,24 +29,24 @@ public class Player {
         }
     }
 
-    void LoseGame(){
+    public void LoseGame(){
         this.games += 1;
         this.winRow = 0;
     }
 
-    int getGames(){
+    public int getGames(){
         return this.games;
     }
 
-    int getWins(){
+    public int getWins(){
         return  this.wins;
     }
 
-    int getBestWinRow(){
+    public int getBestWinRow(){
         return this.bestWinRow;
     }
 
-    int getWinRow(){
+    public int getWinRow(){
         return this.winRow;
     }
 

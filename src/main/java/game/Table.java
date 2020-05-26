@@ -1,31 +1,75 @@
 package game;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
+@Slf4j
 public class Table {
- private int size;
- private final int[][] table;
+ private static int move;
+ private static int size;
+ private static int[][] table;
 
- public Table(){
-  table = new int[10][10];
+// public Table(){
+//  table = new int[10][10];
+//  for (int i = 0; i < 10; i++) {
+//   for (int j = 0; j < 10; j++) {
+//    table[i][j] = 0;
+//   }
+//  }
+//  this.move = 0;
+// }
+//
+// public Table(int size){
+//  table=new int[size][size];
+//  for (int i = 0; i < size; i++) {
+//   for (int j = 0; j < size; j++) {
+//    table[i][j] = 0;
+//   }
+//  }
+//  this.move = 0;
+// }
+
+ public static void cout() {
   for (int i = 0; i < 10; i++) {
    for (int j = 0; j < 10; j++) {
-    table[i][j] = 0;
+    System.out.print(table[i][j]);
    }
+   System.out.print("\n");
   }
  }
 
- public Table(int size){
-  table=new int[size][size];
-  for (int i = 0; i < size; i++) {
-   for (int j = 0; j < size; j++) {
+ public static void tableInit() {
+  for (int i = 0; i < 10; i++) {
+   for (int j = 0; j < 10; j++) {
+    log.info(String.valueOf(table[i][j]));
     table[i][j] = 0;
    }
   }
+  move = 1;
  }
 
- public void put(int row, int column,int player){
+ public static int getMove() {
+  return move;
+ }
+
+ public static void newMove() {
+  move += 1;
+ }
+
+ public static int getSize() {
+  return size;
+ }
+
+ public static int getPlayerNum() {
+  if(move%2==0)
+   return 2;
+  else
+   return 1;
+ }
+
+ public static void put(int row, int column,int player){
   if (player == 1) {
    table[row][column] = 1;
   }
@@ -34,17 +78,21 @@ public class Table {
   }
  }
 
- public void cout(){
-  for (int i=0;i<10;i++){
-   for (int j=0;j<10;j++){
-    System.out.print(table[i][j]);
-   }
-   System.out.println();
+ public static boolean available(int row, int column, int player) {
+  if(table[row][column]==0) {
+   put(row,column,player);
+   return true;
   }
+  else
+   return false;
+ }
+
+ public static int currentState(int row, int column) {
+  return table[row][column];
  }
 
 
- public int check(){
+ public static int check(){
   for (int i = 0; i < 10; i++) {
    for (int j = 0; j < 6; j++) {
     if (table[i][j] == 0)
