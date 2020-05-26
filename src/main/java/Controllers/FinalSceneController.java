@@ -1,6 +1,7 @@
 package Controllers;
 
 import Main.AmoebaApplication;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +38,8 @@ public class FinalSceneController {
     }
 
     public void exit() {
-
+        Platform.exit();
+        System.exit(0);
     }
 
 }
