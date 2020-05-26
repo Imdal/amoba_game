@@ -1,5 +1,6 @@
 package Controllers;
 
+import Main.AmoebaApplication;
 import com.google.inject.internal.asm.$Label;
 import game.Game;
 import game.Player;
@@ -10,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -18,6 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
@@ -52,14 +56,10 @@ public class GameSceneController {
     private Player Player2;
     private Game game;
 //    private Table table;
-    public static Image X = new Image("images/aqDRd4o.png");
-    public static Image O = new Image("images/OhAJg3J.png");
-    public static Image empty = new Image("images/empty.png");
-
 
 
     @FXML
-    public void setPlayersName (String name1, String name2){
+    public void setPlayersName(String name1, String name2) {
         log.info(name1);
         log.info(name2);
         player1Name.setText(name1);
@@ -71,8 +71,9 @@ public class GameSceneController {
 //        Platform.runLater(() -> player2Name.setText(name2));
 
     }
+
     @FXML
-    public void startGame (String player1, String player2,int tableSize) {
+    public void startGame(String player1, String player2, int tableSize) {
         log.info("startGame");
 
 //        setPlayersName(player1, player2);
@@ -83,7 +84,6 @@ public class GameSceneController {
 //        displayGameState();
 
 
-
 //        for (int i=0;i<tableSize;i++) {
 //            gamePane.addColumn(0);
 //            gamePane.addRow(0);
@@ -91,61 +91,93 @@ public class GameSceneController {
     }
 
     @FXML
-    public void handleClickOnCube(MouseEvent mouseEvent) {
+    public void handleClickOnCube(MouseEvent mouseEvent) throws IOException {
         int row = GridPane.getRowIndex((Node) mouseEvent.getSource());
         int col = GridPane.getColumnIndex((Node) mouseEvent.getSource());
-        log.info("Clicked: "+row+", "+col);
+        log.info("Clicked: " + row + ", " + col);
 
 //            log.info("Index ({}, {}) is chosen.", row, col);
-            if(Table.available(row,col,Table.getPlayerNum())) {
-                Table.newMove();
-                Table.cout();
-                log.info("New move");
-                if(Table.check()==1) {
-                    Player1.WinGame();
-                    Player2.LoseGame();
-                }
-                else if (Table.check()==2) {
-                    Player2.WinGame();
-                    Player1.LoseGame();
-                }
+        if (Table.available(row, col, Table.getPlayerNum())) {
+            MoveCount.setText(String.valueOf(Table.getMove()));
+            Table.newMove();
+            Table.cout();
+            log.info("New move");
+            if (Table.check() == 1) {
+                log.info("Player 1 win");
+                Player1.WinGame();
+                Player2.LoseGame();
+                Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/Css/Style.css");
+                Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+                AmoebaApplication.stage.getScene().setRoot(root);
+
+            } else if (Table.check() == 2) {
+                log.info("Player 2 win");
+                Player2.WinGame();
+                Player1.LoseGame();
+                Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/Css/Style.css");
+                Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+                AmoebaApplication.stage.getScene().setRoot(root);
+
             }
+        }
         displayGameState();
         log.info("Display");
 
 
     }
 
-        @FXML
-    public void Player1GiveUp() {
+    @FXML
+    public void Player1GiveUp(MouseEvent event) throws IOException {
         log.info("Player 1 gave up.");
         Player1.LoseGame();
         Player2.WinGame();
+        Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/Css/Style.css");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+        AmoebaApplication.stage.getScene().setRoot(root);
+
     }
 
     @FXML
-    public void Player2GiveUp() {
+    public void Player2GiveUp(MouseEvent event) throws IOException {
         log.info("Player 2 gave up.");
         Player2.LoseGame();
         Player1.WinGame();
+        Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/Css/Style.css");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+        AmoebaApplication.stage.getScene().setRoot(root);
+
     }
 
-    @FXML
+
     public void displayGameState() {
-        for(int i=0;i<Table.getSize();i++){
-            for(int j=0;j<Table.getSize();j++) {
-                ImageView view = (ImageView) gamePane.getChildren().get(i *10 + j);
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                ImageView view = (ImageView) gamePane.getChildren().get(i * 10 + j);
 //                if (view.getImage() != null) {
 //                    log.trace("Image({}, {}) = {}", i, j, view.getImage().getUrl());
 //                }
-                if(Table.currentState(i,j) == 1){
-                    view.setImage(X);
-                }
-                else if(Table.currentState(i,j) == 2) {
-                    view.setImage(O);
-                }
-                else if(Table.currentState(i,j) == 0) {
-                    view.setImage(empty);
+                if (Table.table[i][j] == 1) {
+                    view.setImage(StartSceneController.X);
+                } else if (Table.table[i][j] == 2) {
+                    view.setImage(StartSceneController.O);
+                } else if (Table.table[i][j] == 0) {
+                    view.setImage(StartSceneController.empty);
                 }
             }
         }

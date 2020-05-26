@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 @Slf4j
 public class Table {
- private static int move;
+ private static int move=1;
  private static int size;
- private static int[][] table;
+ //private static int[][] table = new int[10][10];;
 
 // public Table(){
 //  table = new int[10][10];
@@ -40,15 +40,19 @@ public class Table {
   }
  }
 
- public static void tableInit() {
-  table = new int[10][10];
-  for (int i = 0; i < 10; i++) {
-   for (int j = 0; j < 10; j++) {
-    table[i][j] = 0;
-   }
-  }
-  move = 1;
- }
+ public static int[][] table = {
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0}
+ };
+
 
  public static int getMove() {
   return move;
@@ -85,10 +89,6 @@ public class Table {
   }
   else
    return false;
- }
-
- public static int currentState(int row, int column) {
-  return table[row][column];
  }
 
 
@@ -135,7 +135,6 @@ public class Table {
    }
   }
   return 0;
-   }
+ }
 
-  }
-
+}
