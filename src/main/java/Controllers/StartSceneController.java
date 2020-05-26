@@ -77,7 +77,7 @@ void startAction(ActionEvent event) throws IOException {
         log.info("Table init");
         Table.tableInit();
         log.info("Table cout");
-//        Table.cout();
+        Table.cout();
     }
     }
 }

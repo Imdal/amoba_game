@@ -41,9 +41,9 @@ public class Table {
  }
 
  public static void tableInit() {
+  table = new int[10][10];
   for (int i = 0; i < 10; i++) {
    for (int j = 0; j < 10; j++) {
-    log.info(String.valueOf(table[i][j]));
     table[i][j] = 0;
    }
   }
