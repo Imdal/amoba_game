@@ -21,7 +21,7 @@
          </image>
       </ImageView>
       <Button fx:id="Player1GiveUp" alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="164.0" mnemonicParsing="false" onAction="#Player1GiveUp" prefHeight="73.0" prefWidth="70.0" text="Give up" textAlignment="CENTER" />
-      <Button fx:id="Player2GiveUp" alignment="CENTER" contentDisplay="CENTER" layoutX="471.0" layoutY="164.0" mnemonicParsing="false" onAction="#Player2GiveUp" prefHeight="73.0" prefWidth="70.0" text="Give up" />
+      <Button fx:id="Player2GiveUp" alignment="CENTER" contentDisplay="CENTER" layoutX="471.0" layoutY="164.0" mnemonicParsing="false" onAction="#Player2GiveUp" prefHeight="73.0" prefWidth="70.0" text="Give up" textAlignment="CENTER"/>
       <HBox alignment="CENTER" layoutX="138.0" layoutY="340.0">
          <Label prefHeight="60.0" text="Moves:">
             <HBox.margin>

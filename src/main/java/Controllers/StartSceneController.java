@@ -23,6 +23,8 @@ import javax.inject.Inject;
 
 
 import java.io.IOException;
+import java.time.Instant;
+
 @Slf4j
 public class StartSceneController {
     private PlayerDao playerDao;
@@ -47,6 +49,8 @@ public class StartSceneController {
     public static Image X;
     public static Image O;
     public static Image empty;
+    private Player Player1;
+    private Player Player2;
 
 
     @FXML
@@ -74,6 +78,9 @@ public class StartSceneController {
             stage.setScene(scene);
             stage.show();
             AmoebaApplication.stage.getScene().setRoot(root);
+//            gameSceneController.createStopWatch();
+//            gameSceneController.startTime = Instant.now();
+
 //
 //        gameSceneController.startGame(Player1NameText.getText(), Player2NameText.getText(),(int) TableSizeSlider.getValue());
 //        fxmlLoader.<GameSceneController>getController().startGame(Player1NameText.getText(), Player2NameText.getText(),(int) TableSizeSlider.getValue());
@@ -87,6 +94,19 @@ public class StartSceneController {
             log.info("Set names");
 //            gameSceneController.setPlayersName(Player1NameText.getText(), Player2NameText.getText());
 //            fxmlLoader.<GameSceneController>getController().setPlayersName(Player1NameText.getText(), Player2NameText.getText());
+//            GameSceneController.player1Name.setText(Player1NameText.getText());
+//            GameSceneController.player2Name.setText(Player2NameText.getText());
+//            Player1=playerDao.findPlayer(Player1NameText.getText());
+//            Player2=playerDao.findPlayer(Player2NameText.getText());
+//                Player1 = new Player(Player1NameText.getText());
+//                Player2 = new Player(Player2NameText.getText());
+//                playerDao.persist(Player1.createPlayer());
+//                playerDao.persist(Player2.createPlayer());
+
+//        Platform.runLater(() -> player1Name.setText(name1));
+//        Platform.runLater(() -> player2Name.setText(name2));
+
+
         }
     }
 }

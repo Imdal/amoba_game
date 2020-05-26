@@ -6,6 +6,9 @@ import game.Game;
 import game.Player;
 import game.PlayerDao;
 import game.Table;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,9 +26,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.time.DurationFormatUtils;
 
 import java.awt.*;
 import java.io.IOException;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Slf4j
@@ -38,9 +44,9 @@ public class GameSceneController {
     @FXML
     private GridPane gamePane;
     @FXML
-    private Label player1Name;
+    public static Label player1Name;
     @FXML
-    private Label player2Name;
+    public static Label player2Name;
 
     @FXML
     private Label MoveCount;
@@ -54,8 +60,11 @@ public class GameSceneController {
 
     private Player Player1;
     private Player Player2;
+
     private Game game;
-//    private Table table;
+    public Timeline stopWatchTimeline;
+    public Instant startTime;
+
 
 
     @FXML
@@ -102,31 +111,32 @@ public class GameSceneController {
         if (Table.available(row, col, Table.getPlayerNum())) {
             MoveCount.setText(String.valueOf(Table.getMove()));
             Table.newMove();
-            Table.cout();
             log.info("New move");
             displayGameState();
             log.info("Display");
             if (Table.check() == 1) {
                 log.info("Player 1 win");
-                Player1.WinGame();
-                Player2.LoseGame();
+//                Player1.WinGame();
+//                Player2.LoseGame();
                 Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
-                Scene scene = new Scene(root);
-                scene.getStylesheets().add("/Css/Style.css");
+//                Scene scene = new Scene(root);
+//                scene.getStylesheets().add("/Css/Style.css");
                 Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-                stage.setScene(scene);
+//                stage.setScene(scene);
+                stage.setScene(new Scene(root));
                 stage.show();
                 AmoebaApplication.stage.getScene().setRoot(root);
 
             } else if (Table.check() == 2) {
                 log.info("Player 2 win");
-                Player2.WinGame();
-                Player1.LoseGame();
+//                Player2.WinGame();
+//                Player1.LoseGame();
                 Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
-                Scene scene = new Scene(root);
-                scene.getStylesheets().add("/Css/Style.css");
+//                Scene scene = new Scene(root);
+//                scene.getStylesheets().add("/Css/Style.css");
                 Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-                stage.setScene(scene);
+//                stage.setScene(scene);
+                stage.setScene(new Scene(root));
                 stage.show();
                 AmoebaApplication.stage.getScene().setRoot(root);
 
@@ -134,20 +144,21 @@ public class GameSceneController {
         }
         displayGameState();
         log.info("Display");
-
-
     }
 
     @FXML
-    public void Player1GiveUp(MouseEvent event) throws IOException {
+    public void Player1GiveUp(ActionEvent event) throws IOException {
         log.info("Player 1 gave up.");
-        Player1.LoseGame();
-        Player2.WinGame();
+//        Player1.LoseGame();
+//        Player2.WinGame();
+//            gameOver.setValue(true);
+        Player2GiveUp.setDisable(true);
         Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/Css/Style.css");
+//                Scene scene = new Scene(root);
+//                scene.getStylesheets().add("/Css/Style.css");
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
+//                stage.setScene(scene);
+        stage.setScene(new Scene(root));
         stage.show();
         AmoebaApplication.stage.getScene().setRoot(root);
 
@@ -156,17 +167,18 @@ public class GameSceneController {
     @FXML
     public void Player2GiveUp(ActionEvent event) throws IOException {
         log.info("Player 2 gave up.");
-        Player2.LoseGame();
-        Player1.WinGame();
+//        Player2.LoseGame();
+//        Player1.WinGame();
 //            gameOver.setValue(true);
         Player1GiveUp.setDisable(true);
         Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/Css/Style.css");
+//                Scene scene = new Scene(root);
+//                scene.getStylesheets().add("/Css/Style.css");
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
+//                stage.setScene(scene);
+        stage.setScene(new Scene(root));
         stage.show();
-//        AmoebaApplication.stage.getScene().setRoot(root);
+        AmoebaApplication.stage.getScene().setRoot(root);
 
     }
 
@@ -187,5 +199,14 @@ public class GameSceneController {
                 }
             }
         }
+    }
+
+    public void createStopWatch() {
+        stopWatchTimeline = new Timeline(new KeyFrame(javafx.util.Duration.ZERO, e -> {
+            long millisElapsed = startTime.until(Instant.now(), ChronoUnit.MILLIS);
+            stopWatch.setText(DurationFormatUtils.formatDuration(millisElapsed, "HH:mm:ss"));
+        }), new KeyFrame(javafx.util.Duration.seconds(1)));
+        stopWatchTimeline.setCycleCount(Animation.INDEFINITE);
+        stopWatchTimeline.play();
     }
 }
