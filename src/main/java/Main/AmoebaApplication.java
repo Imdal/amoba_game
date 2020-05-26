@@ -39,7 +39,7 @@ public class AmoebaApplication extends Application {
         scene.getStylesheets().add("/Css/Style.css");
 
         stage.setTitle("Amoeba");
-//        stage.setResizable(false);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

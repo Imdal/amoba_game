@@ -1,8 +1,20 @@
 package game;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+import javax.persistence.*;
+import java.time.Duration;
+import java.time.Instant;
+
+@Data
+@AllArgsConstructor
+@Builder
 @Entity
+@Slf4j
 public class Player {
 
     @Column(nullable = false)
@@ -52,5 +64,17 @@ public class Player {
 
     public String getPlayerName() {
         return this.playerName;
+    }
+
+    public Player createPlayer() {
+        Player result = Player.builder()
+                .playerName(playerName)
+                .games(games)
+                .wins(wins)
+                .winRow(winRow)
+                .bestWinRow(bestWinRow)
+                .build();
+        log.info("Player {} created.", playerName);
+        return result;
     }
 }

@@ -26,7 +26,7 @@ import java.io.IOException;
 @Slf4j
 public class StartSceneController {
     private PlayerDao playerDao;
-    private GameSceneController gameSceneController;
+    private GameSceneController gameSceneController=new GameSceneController();
 
     @Inject
     private FXMLLoader fxmlLoader;
@@ -77,14 +77,16 @@ public class StartSceneController {
 //
 //        gameSceneController.startGame(Player1NameText.getText(), Player2NameText.getText(),(int) TableSizeSlider.getValue());
 //        fxmlLoader.<GameSceneController>getController().startGame(Player1NameText.getText(), Player2NameText.getText(),(int) TableSizeSlider.getValue());
-            log.info("Set names");
-//        fxmlLoader.<GameSceneController>getController().setPlayersName(Player1NameText.getText(), Player2NameText.getText());
+
             log.info("Table init");
             log.info("Table cout");
 //        Table.cout();
             O = new Image("images/aqDRd4o.png");
             X = new Image("images/OhAJg3J.png");
             empty = new Image("images/empty.png");
+            log.info("Set names");
+//            gameSceneController.setPlayersName(Player1NameText.getText(), Player2NameText.getText());
+//            fxmlLoader.<GameSceneController>getController().setPlayersName(Player1NameText.getText(), Player2NameText.getText());
         }
     }
 }
