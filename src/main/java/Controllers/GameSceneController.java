@@ -172,10 +172,7 @@ public class GameSceneController {
 //            gameOver.setValue(true);
         Player1GiveUp.setDisable(true);
         Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
-//                Scene scene = new Scene(root);
-//                scene.getStylesheets().add("/Css/Style.css");
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//                stage.setScene(scene);
         stage.setScene(new Scene(root));
         stage.show();
         AmoebaApplication.stage.getScene().setRoot(root);

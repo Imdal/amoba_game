@@ -39,8 +39,9 @@ public class Table {
    System.out.print("\n");
   }
  }
+ public static int[][] table = new int[10][10];
 
- public static int[][] table = {
+ public static int[][] initTable = {
          {0,0,0,0,0,0,0,0,0,0},
          {0,0,0,0,0,0,0,0,0,0},
          {0,0,0,0,0,0,0,0,0,0},

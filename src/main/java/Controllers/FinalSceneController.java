@@ -1,6 +1,7 @@
 package Controllers;
 
 import Main.AmoebaApplication;
+import game.Table;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,10 +32,11 @@ public class FinalSceneController {
                 Scene scene = new Scene(root);
                 scene.getStylesheets().add("/Css/Style.css");
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//                stage.setScene(scene);
         stage.setScene(scene);
         stage.show();
         AmoebaApplication.stage.getScene().setRoot(root);
+        Table.table=Table.initTable;
+
     }
 
     public void exit() {
