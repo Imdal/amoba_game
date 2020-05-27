@@ -1,15 +1,11 @@
 package Controllers;
 
 import Main.AmoebaApplication;
-import com.google.inject.internal.asm.$Label;
 import game.Game;
-import game.Player;
-import game.PlayerDao;
 import game.Table;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,41 +14,33 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 
-import java.awt.*;
+import javax.inject.Inject;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
 
 @Slf4j
 public class GameSceneController {
 
-    private PlayerDao playerDao;
+    @Inject
     private FXMLLoader fxmlLoader;
-    private StartSceneController startSceneController;
-
     @FXML
     private GridPane gamePane;
     @FXML
     public Label player1Name;
     @FXML
     public Label player2Name;
-
     @FXML
     private Label MoveCount;
     @FXML
     private Label stopWatch;
-
     @FXML
     private Button Player1GiveUp;
     @FXML
@@ -62,46 +50,6 @@ public class GameSceneController {
     public Instant startTime;
 
 
-
-    @FXML
-    public void setPlayersName() {
-        log.info("set Player 1 name to {}",Game.player1Name);
-        player1Name.setText(Game.player1Name);
-        log.info("set Player 2 name to {}",Game.player2Name);
-        player2Name.setText(Game.player2Name);
-//        log.info(name1);
-//        log.info(name2);
-//        player1Name.setText(name1);
-//        player2Name.setText(name2);
-//        Player1 = new Player(name1);
-//        Player2 = new Player(name2);
-//        playerDao.persist(Player1.createPlayer());
-//        playerDao.persist(Player2.createPlayer());
-
-//        Platform.runLater(() -> player1Name.setText(name1));
-//        Platform.runLater(() -> player2Name.setText(name2));
-
-    }
-
-    @FXML
-    public void startGame(String player1, String player2, int tableSize) {
-        log.info("startGame");
-
-//        setPlayersName(player1, player2);
-//        Player1 = playerDao.findPlayer(player1);
-//        Player2 = playerDao.findPlayer(player2);
-//        game=new Game(Player1,Player2,tableSize);
-//        table = new Table();
-//        displayGameState();
-
-
-//        for (int i=0;i<tableSize;i++) {
-//            gamePane.addColumn(0);
-//            gamePane.addRow(0);
-//    }
-    }
-
-    @FXML
     public void handleClickOnCell(MouseEvent mouseEvent) throws IOException {
         int row = GridPane.getRowIndex((Node) mouseEvent.getSource());
         int col = GridPane.getColumnIndex((Node) mouseEvent.getSource());
@@ -113,7 +61,6 @@ public class GameSceneController {
         player2Name.setText(Game.player2Name);
 
 
-//            log.info("Index ({}, {}) is chosen.", row, col);
         if (Table.available(row, col, Table.getPlayerNum())) {
             MoveCount.setText(String.valueOf(Table.getMove()));
             Table.newMove();
@@ -126,10 +73,7 @@ public class GameSceneController {
                 Game.Winner=1;
                 Game.Player2.LoseGame();
                 Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
-//                Scene scene = new Scene(root);
-//                scene.getStylesheets().add("/Css/Style.css");
                 Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-//                stage.setScene(scene);
                 stage.setScene(new Scene(root));
                 stage.show();
                 AmoebaApplication.stage.getScene().setRoot(root);
@@ -140,10 +84,7 @@ public class GameSceneController {
                 Game.Winner=2;
                 Game.Player1.LoseGame();
                 Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
-//                Scene scene = new Scene(root);
-//                scene.getStylesheets().add("/Css/Style.css");
                 Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-//                stage.setScene(scene);
                 stage.setScene(new Scene(root));
                 stage.show();
                 AmoebaApplication.stage.getScene().setRoot(root);
@@ -152,10 +93,7 @@ public class GameSceneController {
                 Game.Player1.LoseGame();
                 Game.Player2.LoseGame();
                 Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
-//                Scene scene = new Scene(root);
-//                scene.getStylesheets().add("/Css/Style.css");
                 Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-//                stage.setScene(scene);
                 stage.setScene(new Scene(root));
                 stage.show();
                 AmoebaApplication.stage.getScene().setRoot(root);
@@ -171,13 +109,9 @@ public class GameSceneController {
         Game.Player1.LoseGame();
         Game.Player2.WinGame();
         Game.Winner=2;
-//            gameOver.setValue(true);
         Player2GiveUp.setDisable(true);
         Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
-//                Scene scene = new Scene(root);
-//                scene.getStylesheets().add("/Css/Style.css");
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//                stage.setScene(scene);
         stage.setScene(new Scene(root));
         stage.show();
         AmoebaApplication.stage.getScene().setRoot(root);
@@ -190,7 +124,6 @@ public class GameSceneController {
         Game.Player2.LoseGame();
         Game.Player1.WinGame();
         Game.Winner=1;
-//            gameOver.setValue(true);
         Player1GiveUp.setDisable(true);
         Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -205,9 +138,6 @@ public class GameSceneController {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 ImageView view = (ImageView) gamePane.getChildren().get(i * 10 + j);
-//                if (view.getImage() != null) {
-//                    log.trace("Image({}, {}) = {}", i, j, view.getImage().getUrl());
-//                }
                 if (Table.table[i][j] == 1) {
                     view.setImage(StartSceneController.X);
                 } else if (Table.table[i][j] == 2) {

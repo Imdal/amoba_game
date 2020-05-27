@@ -2,8 +2,6 @@ package Controllers;
 
 import Main.AmoebaApplication;
 import game.Game;
-import game.Player;
-import game.PlayerDao;
 import game.Table;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -24,11 +20,9 @@ import javax.inject.Inject;
 
 
 import java.io.IOException;
-import java.time.Instant;
 
 @Slf4j
 public class StartSceneController {
-    private PlayerDao playerDao;
     private GameSceneController gameSceneController=new GameSceneController();
 
     @Inject
@@ -44,14 +38,9 @@ public class StartSceneController {
     @FXML
     private Label player2label;
 
-    @FXML
-    private Slider TableSizeSlider;
-
     public static Image X;
     public static Image O;
     public static Image empty;
-    private Player Player1;
-    private Player Player2;
 
 
     @FXML
@@ -88,28 +77,13 @@ public class StartSceneController {
 
             log.info("Table init");
             log.info("Table cout");
-//        Table.cout();
             O = new Image("images/aqDRd4o.png");
             X = new Image("images/OhAJg3J.png");
             empty = new Image("images/empty.png");
             log.info("Set names");
             Table.setInitTable();
             Game.setPlayers(Player1NameText.getText(), Player2NameText.getText());
-//            gameSceneController.setPlayersName();
-            fxmlLoader.<GameSceneController>getController().setPlayersName();
-//            gameSceneController.setPlayersName(Player1NameText.getText(), Player2NameText.getText());
-//            fxmlLoader.<GameSceneController>getController().setPlayersName(Player1NameText.getText(), Player2NameText.getText());
-//            GameSceneController.player1Name.setText(Player1NameText.getText());
-//            GameSceneController.player2Name.setText(Player2NameText.getText());
-//            Player1=playerDao.findPlayer(Player1NameText.getText());
-//            Player2=playerDao.findPlayer(Player2NameText.getText());
-//                Player1 = new Player(Player1NameText.getText());
-//                Player2 = new Player(Player2NameText.getText());
-//                playerDao.persist(Player1.createPlayer());
-//                playerDao.persist(Player2.createPlayer());
 
-//        Platform.runLater(() -> player1Name.setText(name1));
-//        Platform.runLater(() -> player2Name.setText(name2));
 
 
         }

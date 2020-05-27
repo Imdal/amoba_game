@@ -17,11 +17,26 @@ import java.time.Instant;
 @Slf4j
 public class Player {
 
+    /**
+     * Stores the name of the player.
+     */
     @Column(nullable = false)
     private final String playerName;
+    /**
+     * Store the number of the player's lifetime games.
+     */
     private int games;
+    /**
+     * Store the number of games where the player won.
+     */
     private int wins;
+    /**
+     * Store the number of wins in the last win row.
+     */
     private int winRow;
+    /**
+     * Store the number of wins in the best win row.
+     */
     private int bestWinRow;
 
     public Player(String playerName){
@@ -32,6 +47,10 @@ public class Player {
         this.winRow = 0;
         this.bestWinRow = 0;
     }
+
+    /**
+     * Set the variables if the player wins.
+     */
     public void WinGame() {
         this.games += 1;
         this.wins += 1;
@@ -41,40 +60,56 @@ public class Player {
         }
     }
 
+    /**
+     * Set the variables if the player lose.
+     */
     public void LoseGame(){
         this.games += 1;
         this.winRow = 0;
     }
 
+    /**
+     * To get the number of the lifetime games.
+     * @return the number of games
+     */
+
     public int getGames(){
         return this.games;
     }
+
+    /**
+     * To get the number of the lifetime wins.
+     * @return the number of wins
+     */
 
     public int getWins(){
         return  this.wins;
     }
 
+    /**
+     * To get the value of the best row of wins.
+     * @return the vaalue of the best win row
+     */
+
     public int getBestWinRow(){
         return this.bestWinRow;
     }
+
+    /**
+     * To get the current win row.
+     * @return the value of the current win row
+     */
 
     public int getWinRow(){
         return this.winRow;
     }
 
+    /**
+     * To get the player name.
+     * @return the name of the player
+     */
+
     public String getPlayerName() {
         return this.playerName;
-    }
-
-    public Player createPlayer() {
-        Player result = Player.builder()
-                .playerName(playerName)
-                .games(games)
-                .wins(wins)
-                .winRow(winRow)
-                .bestWinRow(bestWinRow)
-                .build();
-        log.info("Player {} created.", playerName);
-        return result;
     }
 }

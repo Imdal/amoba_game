@@ -158,6 +158,10 @@ public class Table {
   return 0;
  }
 
+ /**
+  * It sees if the array is full with the players steps.
+  * @return true when the table is full.
+  */
  public static boolean fullTable() {
   for(int i=0;i<10;i++) {
    for (int j=0;j<10;j++) {

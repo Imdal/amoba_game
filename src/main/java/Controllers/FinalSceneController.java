@@ -2,7 +2,6 @@ package Controllers;
 
 import Main.AmoebaApplication;
 import game.Game;
-import game.Table;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,19 +14,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
-import javafx.scene.control.Button;
 
 
-import javax.resource.spi.LazyAssociatableConnectionManager;
+import javax.inject.Inject;
 import java.io.IOException;
 
 @Slf4j
 public class FinalSceneController {
-    @FXML
-    private Button newGameButton;
-    @FXML
-    private Button exitButton;
-    @FXML
+    @Inject
     private FXMLLoader fxmlLoader;
     @FXML
     private Label Player1Label;
@@ -74,6 +68,7 @@ public class FinalSceneController {
     public void showPlayer1Stats() {
         if (Game.Winner==1) {
             winner1.setImage(new Image("/images/Crown.png"));
+            winner1.setFitWidth(50);
         }
         Player1Label.setText(Game.player1Name);
         lifetimeGames1.setText(String.valueOf(Game.Player1.getGames()));
@@ -86,7 +81,9 @@ public class FinalSceneController {
     public void showPlayer2Stats() {
         if (Game.Winner==2) {
             winner2.setImage(new Image("/images/Crown.png"));
+            winner1.setFitWidth(50);
         }
+        Player2Label.setText((Game.player2Name));
         lifetimeGames2.setText(String.valueOf(Game.Player2.getGames()));
         winGames2.setText(String.valueOf(Game.Player2.getWins()));
         loseGames2.setText(String.valueOf(Game.Player2.getGames()-Game.Player2.getWins()));
