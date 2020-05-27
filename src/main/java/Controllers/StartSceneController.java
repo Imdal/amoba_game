@@ -68,13 +68,12 @@ public class StartSceneController {
             stage.show();
             AmoebaApplication.stage.getScene().setRoot(root);
 
-            log.info("Table init");
-            log.info("Table cout");
             O = new Image("images/aqDRd4o.png");
             X = new Image("images/OhAJg3J.png");
             empty = new Image("images/empty.png");
-            log.info("Set names");
+            log.info("Table initialize");
             Table.setInitTable();
+            log.info("Set player names");
             Game.setPlayers(Player1NameText.getText(), Player2NameText.getText());
 
 

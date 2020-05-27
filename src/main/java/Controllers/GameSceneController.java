@@ -63,6 +63,7 @@ public class GameSceneController {
             player1Name.setText(Game.player1Name);
             log.info("set Player 2 name to {}", Game.player2Name);
             player2Name.setText(Game.player2Name);
+            log.info("Timer started");
             createStopWatch();
             startTime = Instant.now();
             firstStep++;
@@ -71,9 +72,9 @@ public class GameSceneController {
         if (Table.available(row, col, Table.getPlayerNum())) {
             MoveCount.setText(String.valueOf(Table.getMove()));
             Table.newMove();
-            log.info("New move");
+            log.info("New move done");
             displayGameState();
-            log.info("Display");
+            log.info("Display game state");
             if (Table.check() == 1) {
                 log.info("Player 1 win");
                 Game.Player1.WinGame();

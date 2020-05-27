@@ -1,42 +1,41 @@
 package game;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.*;
+import org.checkerframework.checker.units.qual.C;
 
 import javax.persistence.*;
-import java.time.Duration;
-import java.time.Instant;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
-@Slf4j
 public class Player {
-
     /**
      * Stores the name of the player.
      */
+    @Id
     @Column(nullable = false)
-    private final String playerName;
+    private String playerName;
     /**
      * Store the number of the player's lifetime games.
      */
+    @Column
     private int games;
     /**
      * Store the number of games where the player won.
      */
+    @Column
     private int wins;
     /**
      * Store the number of wins in the last win row.
      */
+    @Column
     private int winRow;
     /**
      * Store the number of wins in the best win row.
      */
+    @Column
     private int bestWinRow;
 
     public Player(String playerName){

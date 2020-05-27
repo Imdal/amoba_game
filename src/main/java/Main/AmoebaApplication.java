@@ -19,7 +19,7 @@ public class AmoebaApplication extends Application {
     private FXMLLoader fxmlLoader;
     public static Stage stage;
 
-    private GuiceContext context = new GuiceContext(this, () -> List.of(
+    private final GuiceContext context = new GuiceContext(this, () -> List.of(
             new AbstractModule() {
                 @Override
                 protected void configure() {
@@ -32,6 +32,7 @@ public class AmoebaApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         log.info("Starting application...");
+//        context.init();
         AmoebaApplication.stage=stage;
         Parent root = FXMLLoader.load(AmoebaApplication.class.getResource("/fxml/startWindow.fxml"));
 

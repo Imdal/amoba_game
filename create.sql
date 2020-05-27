@@ -5,6 +5,6 @@ create sequence hibernate_sequence start with 1 increment by 1
         games bigint not null,
         wins bigint not null,
         winRow bigint not null,
-        bestWinRow biint not null,
+        bestWinRow bigint not null,
         primary key (playerName)
     )

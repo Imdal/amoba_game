@@ -1,4 +1,4 @@
-package util.guice;
+package guice;
 
 import com.google.inject.persist.PersistService;
 
@@ -14,3 +14,4 @@ public class JpaInitializer {
     }
 
 }
+

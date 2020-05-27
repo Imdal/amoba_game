@@ -1,8 +1,11 @@
+package game;
+
 import game.Table;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TableTest {
+
     @Test
     void testAvailable() {
         assertEquals(true,Table.available(1,5,1));

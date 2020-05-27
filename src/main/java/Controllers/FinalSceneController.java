@@ -66,6 +66,7 @@ public class FinalSceneController {
     }
 
     public void showPlayer1Stats() {
+        log.info("show player 1 result");
         if (Game.Winner==1) {
             winner1.setImage(new Image("/images/Crown.png"));
             winner1.setFitWidth(40);
@@ -79,6 +80,7 @@ public class FinalSceneController {
     }
 
     public void showPlayer2Stats() {
+        log.info("show player 2 result");
         if (Game.Winner==2) {
             winner2.setImage(new Image("/images/Crown.png"));
             winner2.setFitWidth(40);
@@ -92,6 +94,7 @@ public class FinalSceneController {
     }
 
     public void exit() {
+        log.info("Game exited");
         Platform.exit();
         System.exit(0);
     }
