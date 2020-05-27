@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -31,7 +32,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Label text="Value">
+            <Label fx:id="winGames1" text="Value">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
@@ -48,7 +49,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Label text="Value">
+            <Label fx:id="winGames2" text="Value">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
@@ -65,7 +66,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Label text="Value">
+            <Label fx:id="loseGames1" text="Value">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
@@ -82,7 +83,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Label text="Value">
+            <Label fx:id="loseGames2" text="Value">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
@@ -99,7 +100,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Label text="Value">
+            <Label fx:id="winRow1" text="Value">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
@@ -116,7 +117,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Label text="Value">
+            <Label fx:id="winRow2" text="Value">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
@@ -133,7 +134,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Label text="Value">
+            <Label fx:id="bestWinRow1" text="Value">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
@@ -150,7 +151,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Label text="Value">
+            <Label fx:id="bestWinRow2" text="Value">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
@@ -167,7 +168,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Label text="Value">
+            <Label fx:id="lifetimeGames1" text="Value">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
@@ -184,7 +185,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Label text="Value">
+            <Label fx:id="lifetimeGames2" text="Value">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
@@ -196,20 +197,25 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Player 1">
+            <Label fx:id="Player1Label" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#showPlayer1Stats" text="Player 1">
                <font>
                   <Font size="20.0" />
                </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </Label>
+            <ImageView fx:id="winner1" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Player 2">
+            <Label fx:id="Player2Label" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#showPlayer2Stats" text="Player 2">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
+            <ImageView fx:id="winner2" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">

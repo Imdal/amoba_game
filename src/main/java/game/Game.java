@@ -1,53 +1,24 @@
 package game;
 
 public class Game {
-//    private Player player1;
-//    private Player player2;
-//    private Table table;
-//
-//
-//    public Game(Player player1, Player player2) {
-//        this.player1 = player1;
-//        this.player2 = player2;
-//        table = new Table();
-//
-//    }
-//
-//    public Game(Player player1, Player player2, int size) {
-//        this.player1 = player1;
-//        this.player2 = player2;
-//        table=new Table(size);
-//    }
-//
-//    public void Start(){
-//        table.put(0,0,1);
-//        table.put(0,1,2);
-//        table.cout();
-//        System.out.println(table.check());
-//        table.put(1,0,1);
-//        table.put(1,1,2);
-//        table.cout();
-//        System.out.println(table.check());
-//        table.put(2,0,1);
-//        table.put(2,1,2);
-//        table.cout();
-//        System.out.println(table.check());
-//        table.put(3,0,1);
-//        table.put(3,1,2);
-//        table.cout();
-//        System.out.println(table.check());
-//        table.put(4,0,1);
-////        table.put(0,1,2);
-//        table.cout();
-//        System.out.println(table.check());
-//        if(table.check()==1) {
-//            player1.WinGame();
-//            player2.LoseGame();
-//        }
-//        else if (table.check()==2) {
-//            player2.WinGame();
-//            player1.LoseGame();
-//        }
-//    }
+    public static PlayerDao playerDao;
+    public static Player Player1;
+    public static Player Player2;
+    public static String player1Name;
+    public static String player2Name;
+    public static int Winner=0;
+
+    public static void setPlayers(String name1, String name2) {
+        player1Name=name1;
+        player2Name=name2;
+//        Player1=playerDao.findPlayer(name1);
+//        Player2=playerDao.findPlayer(name2);
+        Player1 = new Player(name1);
+        Player2 = new Player(name2);
+//        playerDao.persist(Player1.createPlayer());
+//        playerDao.persist(Player2.createPlayer());
+
+    }
+
 
 }

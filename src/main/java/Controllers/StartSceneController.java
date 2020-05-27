@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -92,6 +93,10 @@ public class StartSceneController {
             X = new Image("images/OhAJg3J.png");
             empty = new Image("images/empty.png");
             log.info("Set names");
+            Table.setInitTable();
+            Game.setPlayers(Player1NameText.getText(), Player2NameText.getText());
+//            gameSceneController.setPlayersName();
+            fxmlLoader.<GameSceneController>getController().setPlayersName();
 //            gameSceneController.setPlayersName(Player1NameText.getText(), Player2NameText.getText());
 //            fxmlLoader.<GameSceneController>getController().setPlayersName(Player1NameText.getText(), Player2NameText.getText());
 //            GameSceneController.player1Name.setText(Player1NameText.getText());
