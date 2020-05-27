@@ -23,7 +23,6 @@ import java.io.IOException;
 
 @Slf4j
 public class StartSceneController {
-    private GameSceneController gameSceneController=new GameSceneController();
 
     @Inject
     private FXMLLoader fxmlLoader;
@@ -68,12 +67,6 @@ public class StartSceneController {
             stage.setScene(scene);
             stage.show();
             AmoebaApplication.stage.getScene().setRoot(root);
-//            gameSceneController.createStopWatch();
-//            gameSceneController.startTime = Instant.now();
-
-//
-//        gameSceneController.startGame(Player1NameText.getText(), Player2NameText.getText(),(int) TableSizeSlider.getValue());
-//        fxmlLoader.<GameSceneController>getController().startGame(Player1NameText.getText(), Player2NameText.getText(),(int) TableSizeSlider.getValue());
 
             log.info("Table init");
             log.info("Table cout");

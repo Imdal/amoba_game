@@ -7,6 +7,7 @@
     <groupId>hu.unideb.inf</groupId>
     <artifactId>amoba</artifactId>
     <version>1.0</version>
+    <description>The two person amoeba game.</description>
     <developers>
         <developer>
             <id>imdal</id>

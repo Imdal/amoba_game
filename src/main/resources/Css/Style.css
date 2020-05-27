@@ -37,3 +37,13 @@
     -fx-background-color: #436ea07a;
     -fx-grid-lines-visible: true;
 }
+
+#scoresPanel .label {
+    -fx-font-size: 13px;
+}
+
+#Player1Label, #Player2Label {
+    -fx-font-weight: bold;
+    -fx-font-size: 20px!important;
+    -fx-text-decoration: underline;
+}

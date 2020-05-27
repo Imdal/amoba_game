@@ -68,7 +68,7 @@ public class FinalSceneController {
     public void showPlayer1Stats() {
         if (Game.Winner==1) {
             winner1.setImage(new Image("/images/Crown.png"));
-            winner1.setFitWidth(50);
+            winner1.setFitWidth(40);
         }
         Player1Label.setText(Game.player1Name);
         lifetimeGames1.setText(String.valueOf(Game.Player1.getGames()));
@@ -81,7 +81,7 @@ public class FinalSceneController {
     public void showPlayer2Stats() {
         if (Game.Winner==2) {
             winner2.setImage(new Image("/images/Crown.png"));
-            winner1.setFitWidth(50);
+            winner2.setFitWidth(40);
         }
         Player2Label.setText((Game.player2Name));
         lifetimeGames2.setText(String.valueOf(Game.Player2.getGames()));

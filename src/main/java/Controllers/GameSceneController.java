@@ -46,8 +46,11 @@ public class GameSceneController {
     @FXML
     private Button Player2GiveUp;
 
+    private int firstStep=0;
+
     public Timeline stopWatchTimeline;
     public Instant startTime;
+
 
 
     public void handleClickOnCell(MouseEvent mouseEvent) throws IOException {
@@ -55,11 +58,15 @@ public class GameSceneController {
         int col = GridPane.getColumnIndex((Node) mouseEvent.getSource());
         log.info("Clicked: " + row + ", " + col);
 
-        log.info("set Player 1 name to {}",Game.player1Name);
-        player1Name.setText(Game.player1Name);
-        log.info("set Player 2 name to {}",Game.player2Name);
-        player2Name.setText(Game.player2Name);
-
+        if (firstStep==0) {
+            log.info("set Player 1 name to {}", Game.player1Name);
+            player1Name.setText(Game.player1Name);
+            log.info("set Player 2 name to {}", Game.player2Name);
+            player2Name.setText(Game.player2Name);
+            createStopWatch();
+            startTime = Instant.now();
+            firstStep++;
+        }
 
         if (Table.available(row, col, Table.getPlayerNum())) {
             MoveCount.setText(String.valueOf(Table.getMove()));
@@ -105,8 +112,6 @@ public class GameSceneController {
                 AmoebaApplication.stage.getScene().setRoot(root);
             }
         }
-        displayGameState();
-        log.info("Display");
     }
 
     @FXML
