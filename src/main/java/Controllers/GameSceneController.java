@@ -74,7 +74,9 @@ public class GameSceneController {
                 Game.Player2.LoseGame();
                 Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
                 Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/Css/Style.css");
+                stage.setScene(scene);
                 stage.show();
                 AmoebaApplication.stage.getScene().setRoot(root);
 
@@ -85,7 +87,9 @@ public class GameSceneController {
                 Game.Player1.LoseGame();
                 Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
                 Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/Css/Style.css");
+                stage.setScene(scene);
                 stage.show();
                 AmoebaApplication.stage.getScene().setRoot(root);
             } else if(Table.fullTable()) {
@@ -94,7 +98,9 @@ public class GameSceneController {
                 Game.Player2.LoseGame();
                 Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
                 Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/Css/Style.css");
+                stage.setScene(scene);
                 stage.show();
                 AmoebaApplication.stage.getScene().setRoot(root);
             }
@@ -112,7 +118,9 @@ public class GameSceneController {
         Player2GiveUp.setDisable(true);
         Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/Css/Style.css");
+        stage.setScene(scene);
         stage.show();
         AmoebaApplication.stage.getScene().setRoot(root);
 
@@ -127,7 +135,9 @@ public class GameSceneController {
         Player1GiveUp.setDisable(true);
         Parent root = fxmlLoader.load(getClass().getResource("/fxml/finalWindow.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/Css/Style.css");
+        stage.setScene(scene);
         stage.show();
         AmoebaApplication.stage.getScene().setRoot(root);
 
