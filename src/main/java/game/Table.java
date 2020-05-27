@@ -11,7 +11,7 @@ public class Table {
  /**
   * This stores the count of the steps.
   */
- private static int move=1;
+ private static int move;
 
  /**
   * To write the current state of the table to the consol.
@@ -48,6 +48,10 @@ public class Table {
   * To get the number of steps made by players.
   * @return the number of steps
   */
+
+ public static void initMove() {
+  move=1;
+ }
 
  public static int getMove() {
   return move;

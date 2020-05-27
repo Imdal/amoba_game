@@ -73,6 +73,8 @@ public class StartSceneController {
             empty = new Image("images/empty.png");
             log.info("Table initialize");
             Table.setInitTable();
+            log.info("Move number initialize");
+            Table.initMove();
             log.info("Set player names");
             Game.setPlayers(Player1NameText.getText(), Player2NameText.getText());
 
